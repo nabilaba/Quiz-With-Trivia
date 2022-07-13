@@ -10,9 +10,11 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
+  Heading,
 } from "@chakra-ui/react";
-import { FiHome, FiCompass, FiSettings, FiMenu } from "react-icons/fi";
+import { FiHome, FiMenu } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const LinkItems = [
   { name: "Home", icon: FiHome, path: "/dashboard" },
@@ -41,6 +43,9 @@ export default function SimpleSidebar() {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      <Box ml={{ base: 0, md: 60 }} p={4}>
+        <Outlet />
+      </Box>
     </Box>
   );
 }
