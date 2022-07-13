@@ -37,8 +37,8 @@ export default function Homepage() {
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (username !== "demo") alert("Username tidak ditemukan");
-    else if (password < 8) alert("Password minimal 8 karakter");
-    else if (password !== "1234678") alert("Password salah");
+    else if (password.length < 8) alert("Password minimal 8 karakter");
+    else if (password !== "12345678") alert("Password salah");
     else {
       alert("Login berhasil");
       onClose();
