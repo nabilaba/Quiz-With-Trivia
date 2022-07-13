@@ -10,15 +10,13 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  Heading,
+  Stack,
 } from "@chakra-ui/react";
-import { FiHome, FiMenu } from "react-icons/fi";
+import { FiArrowLeft, FiHome, FiMenu } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-const LinkItems = [
-  { name: "Home", icon: FiHome, path: "/dashboard" },
-];
+const LinkItems = [{ name: "Home", icon: FiHome, path: "/dashboard" }];
 
 export default function SimpleSidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,11 +65,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} path={link.path}>
-          {link.name}
+      <Stack spacing={2}>
+        {LinkItems.map((link) => (
+          <NavItem key={link.name} icon={link.icon} path={link.path}>
+            {link.name}
+          </NavItem>
+        ))}
+        <NavItem icon={FiArrowLeft} path={"/"}>
+          Keluar
         </NavItem>
-      ))}
+      </Stack>
     </Box>
   );
 };
