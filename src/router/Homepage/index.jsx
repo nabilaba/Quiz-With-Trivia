@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Flex,
   Box,
@@ -21,6 +22,8 @@ import loginImg from "../../assets/image/login.svg";
 
 export default function Homepage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const hoveractive = {
     _hover: {
       bg: "accent.100",
@@ -30,6 +33,16 @@ export default function Homepage() {
       bg: "accent.100",
       boxShadow: "xl",
     },
+  };
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    if (username !== "demo") alert("Username tidak ditemukan");
+    else if (password < 8) alert("Password minimal 8 karakter");
+    else if (password !== "1234678") alert("Password salah");
+    else {
+      alert("Login berhasil");
+      onClose();
+    }
   };
 
   return (
@@ -78,7 +91,7 @@ export default function Homepage() {
         <ModalContent m={10} borderRadius={10}>
           <ModalHeader>MASUK</ModalHeader>
           <ModalCloseButton />
-          <ModalBody py={0}>
+          <ModalBody>
             <Stack
               spacing={6}
               direction={{ base: "column", md: "row" }}
@@ -96,7 +109,6 @@ export default function Homepage() {
                   spacing={{ base: 8 }}
                   maxW={{ lg: "lg" }}
                   mx="auto"
-                  my={5}
                 >
                   <Stack spacing={4}>
                     <Heading
@@ -104,7 +116,7 @@ export default function Homepage() {
                       lineHeight={1.1}
                       fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
                     >
-                      Perlu Autentikasi
+                      Perlu Identitas
                       <Text as={"span"} color="accent.50">
                         !
                       </Text>
@@ -113,13 +125,15 @@ export default function Homepage() {
                       color={"gray.500"}
                       fontSize={{ base: "sm", sm: "md" }}
                     >
-                      Sebelum melanjutkan, anda diharuskan melakukan autentikasi
-                      untuk menggunakan website yang saya buat!
+                      Sebelum melanjutkan, anda diharuskan mengisi identitas
+                      diri untuk menggunakan website yang saya buat!
                     </Text>
                   </Stack>
-                  <Box as={"form"} mt={10}>
+                  <Box as={"form"} onSubmit={HandleSubmit}>
                     <Stack spacing={4}>
                       <Input
+                        type="text"
+                        isRequired
                         placeholder="Nama"
                         bg={"gray.100"}
                         border={0}
@@ -129,17 +143,32 @@ export default function Homepage() {
                         }}
                       />
                       <Input
-                        placeholder="Password"
+                        type="text"
+                        isRequired
+                        placeholder="Username: demo"
                         bg={"gray.100"}
                         border={0}
                         color={"gray.500"}
                         _placeholder={{
                           color: "gray.500",
                         }}
+                        onChange={(e) => setUsername(e.target.value)}
+                      />
+                      <Input
+                        type="password"
+                        isRequired
+                        placeholder="Password : 123"
+                        bg={"gray.100"}
+                        border={0}
+                        color={"gray.500"}
+                        _placeholder={{
+                          color: "gray.500",
+                        }}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </Stack>
                     <Button
-                      fontFamily={"heading"}
+                      type="submit"
                       mt={8}
                       w={"full"}
                       bg="accent.50"
