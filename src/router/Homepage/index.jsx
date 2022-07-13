@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Flex,
   Box,
@@ -19,8 +19,10 @@ import {
 } from "@chakra-ui/react";
 import background from "../../assets/image/background.jpg";
 import loginImg from "../../assets/image/login.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -40,8 +42,8 @@ export default function Homepage() {
     else if (password.length < 8) alert("Password minimal 8 karakter");
     else if (password !== "12345678") alert("Password salah");
     else {
-      alert("Login berhasil");
       onClose();
+      navigate("/dashboard");
     }
   };
 
