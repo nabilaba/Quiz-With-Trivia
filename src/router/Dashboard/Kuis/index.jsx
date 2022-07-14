@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import API from "../../../constant";
 import { Link as LinkTo } from "react-router-dom";
 import { Button, Container, Heading } from "@chakra-ui/react";
+import { Helmet } from "react-helmet";
 export default function Kuis() {
-  const { namaKuis, setDataKuis, dataKuis } = useGlobalState();
+  const { namaKuis, setDataKuis } = useGlobalState();
   useEffect(() => {
     if (namaKuis === "Vehicles")
       setDataKuis(`${API.BASE_URL}${API.EASY}&category=28`);
@@ -14,16 +15,17 @@ export default function Kuis() {
       setDataKuis(`${API.BASE_URL}${API.HARD}&category=19`);
   }, []);
 
-  console.log(dataKuis);
-
   return (
     <Container maxW="full" p={4}>
+      <Helmet>
+        <title>QWT - Kuis {namaKuis}</title>
+      </Helmet>
       <Heading fontSize="3xl" fontWeight="bold">
-        Hi, {namaKuis || "Guest"}
+        {namaKuis}
       </Heading>
       <Button
         as={LinkTo}
-        to="no=1"
+        to="no=0"
         colorScheme="blue"
         variant="outline"
         size="lg"
