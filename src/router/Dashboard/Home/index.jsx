@@ -1,4 +1,12 @@
-import { Box, Container, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Heading,
+  HStack,
+  SimpleGrid,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 export default function Home() {
   const Kuis = ({ judul }) => {
@@ -7,10 +15,42 @@ export default function Home() {
         <Text fontSize="xl" fontWeight="bold">
           • {judul}
         </Text>
-        <SimpleGrid columns={{base: 0, md: 2, lg: 3, xl: 4}} spacingX={2} spacingY={2}>
-          <Box height="80px" borderWidth={2} borderColor="accent.50" borderRadius={"md"} p={4}>
-            <Text>Jumlah 5 soal</Text>
-            <Text>Durasi 5 detik</Text>
+        <SimpleGrid columns={1} spacingX={2} spacingY={2}>
+          <Box
+            bg="blackAlpha.800"
+            color={"white"}
+            borderRadius={"md"}
+            h="250px"
+            justify="center"
+          >
+            <Stack
+              spacing={2}
+              h="full"
+              bgPosition="center"
+              bgRepeat="no-repeat"
+              align="center"
+              justify="space-between"
+            >
+              <Stack align="center" justifyContent="center" h="full">
+                <Heading fontSize="xl" fontWeight="bold">
+                  General Knowledge
+                </Heading>
+              </Stack>
+              <HStack
+                mt="auto"
+                bg="accent.100"
+                w="full"
+                borderBottomRadius={"md"}
+                p={2}
+              >
+                <Text fontWeight="bold" bg="white" borderRadius={"full"} color="black" px={2}>
+                  5 Soal
+                </Text>
+                <Text fontWeight="bold" bg="white" borderRadius={"full"} color="black" px={2}>
+                  Pilihan Ganda
+                </Text>
+              </HStack>
+            </Stack>
           </Box>
         </SimpleGrid>
       </Stack>
@@ -23,7 +63,6 @@ export default function Home() {
         <Text fontSize="3xl" fontWeight="bold">
           Hi, Nabil 👋
         </Text>
-
         <Kuis judul="😁 Versi Mudah" />
         <Kuis judul="😲 Versi Sedang" />
         <Kuis judul="😍 Versi Susah" />
