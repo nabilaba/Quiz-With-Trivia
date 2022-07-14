@@ -68,7 +68,6 @@ export default function SimpleSidebar() {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const navigate = useNavigate();
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}

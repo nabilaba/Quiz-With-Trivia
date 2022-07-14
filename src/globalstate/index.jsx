@@ -1,5 +1,6 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
+import axios from "axios";
 
 const useGlobalState = create(
   persist((set) => ({
@@ -9,25 +10,13 @@ const useGlobalState = create(
     nama: "",
     setNama: (nama) => set((state) => ({ ...state, nama })),
 
-    easy: [],
-    setEasy: async (api) => {
-      const response = await fetch(api);
-      const data = await response.json();
-      set((state) => ({ ...state, easy: data.results }));
-    },
+    namaKuis: "",
+    setNamaKuis: (namaKuis) => set((state) => ({ ...state, namaKuis })),
 
-    medium: [],
-    setMedium: async (api) => {
-      const response = await fetch(api);
-      const data = await response.json();
-      set((state) => ({ ...state, medium: data.results }));
-    },
-
-    hard: [],
-    setHard: async (api) => {
-      const response = await fetch(api);
-      const data = await response.json();
-      set((state) => ({ ...state, hard: data.results }));
+    dataKuis: [],
+    setDataKuis: async (api) => {
+      const { data } = await axios.get(api);
+      set((state) => ({ ...state, dataKuis: data.results }));
     },
   }))
 );

@@ -1,4 +1,5 @@
 import useGlobalState from "../../../globalstate";
+import { Link as LinkTo } from "react-router-dom";
 import {
   Box,
   Container,
@@ -9,18 +10,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
-import API from "../../../constant";
 export default function Home() {
-  const { nama, easy, medium, hard, setEasy, setMedium, setHard } =
-    useGlobalState();
-
-  useEffect(() => {
-    setEasy(`${API.BASE_URL}${API.EASY}`);
-    setMedium(`${API.BASE_URL}${API.MEDIUM}`);
-    setHard(`${API.BASE_URL}${API.HARD}`);
-  }, []);
-
+  const { nama, setNamaKuis } = useGlobalState();
   const Kuis = ({ judul, category }) => {
     return (
       <Stack borderRadius="md" pr={2} borderColor="accent.50">
@@ -29,6 +20,8 @@ export default function Home() {
         </Text>
         <SimpleGrid columns={1} spacingX={2} spacingY={2}>
           <Box
+            as={LinkTo}
+            to={`kuis`}
             cursor="pointer"
             bg="blackAlpha.800"
             color={"white"}
@@ -36,9 +29,7 @@ export default function Home() {
             h="250px"
             justify="center"
             role={"group"}
-            onClick={() => {
-              alert("Kamu memilih: " + judul);
-            }}
+            onClick={() => setNamaKuis(category)}
           >
             <Stack
               spacing={2}
@@ -111,9 +102,9 @@ export default function Home() {
         <Text fontSize="3xl" fontWeight="bold">
           Hi, {nama || "Guest"}
         </Text>
-        <Kuis judul="😁 Versi Mudah" category="Easy" />
-        <Kuis judul="😲 Versi Sedang" category="Medium" />
-        <Kuis judul="😍 Versi Susah" category="Hard" />
+        <Kuis judul="😁 Versi Mudah" category="Vehicles" />
+        <Kuis judul="😲 Versi Sedang" category="General Knowledge" />
+        <Kuis judul="😍 Versi Susah" category="Science: Mathematics" />
       </Stack>
     </Container>
   );
