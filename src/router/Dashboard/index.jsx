@@ -14,9 +14,9 @@ import {
 } from "@chakra-ui/react";
 import { FiArrowLeft, FiHome, FiMenu } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link as LinkTo } from "react-router-dom";
 
-const LinkItems = [{ name: "Home", icon: FiHome, path: "/dashboard" }];
+const LinkItems = [{ name: "Dashboard", icon: FiHome, path: "/dashboard" }];
 
 export default function SimpleSidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -60,7 +60,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+        <Text as={LinkTo} to="/" fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           QWT
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
@@ -143,7 +143,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
+      <Text as={LinkTo} to="/" fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
         QWT
       </Text>
     </Flex>

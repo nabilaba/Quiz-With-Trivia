@@ -6,6 +6,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  Button,
 } from "@chakra-ui/react";
 
 export default function Home() {
@@ -17,11 +18,16 @@ export default function Home() {
         </Text>
         <SimpleGrid columns={1} spacingX={2} spacingY={2}>
           <Box
+            cursor="pointer"
             bg="blackAlpha.800"
             color={"white"}
             borderRadius={"md"}
             h="250px"
             justify="center"
+            role={"group"}
+            onClick={() => {
+              alert("Kamu memilih: " + judul);
+            }}
           >
             <Stack
               spacing={2}
@@ -32,7 +38,14 @@ export default function Home() {
               justify="space-between"
             >
               <Stack align="center" justifyContent="center" h="full">
-                <Heading fontSize="xl" fontWeight="bold">
+                <Heading
+                  fontSize="xl"
+                  fontWeight="bold"
+                  transition={"all 0.3s"}
+                  _groupHover={{
+                    transform: "scale(1.1)",
+                  }}
+                >
                   General Knowledge
                 </Heading>
               </Stack>
@@ -43,10 +56,31 @@ export default function Home() {
                 borderBottomRadius={"md"}
                 p={2}
               >
-                <Text fontWeight="bold" bg="white" borderRadius={"full"} color="black" px={2}>
+                <Text
+                  fontWeight="bold"
+                  bg="white"
+                  borderRadius={"full"}
+                  color="black"
+                  px={2}
+                >
                   5 Soal
                 </Text>
-                <Text fontWeight="bold" bg="white" borderRadius={"full"} color="black" px={2}>
+                <Text
+                  fontWeight="bold"
+                  bg="white"
+                  borderRadius={"full"}
+                  color="black"
+                  px={2}
+                >
+                  English
+                </Text>
+                <Text
+                  fontWeight="bold"
+                  bg="white"
+                  borderRadius={"full"}
+                  color="black"
+                  px={2}
+                >
                   Pilihan Ganda
                 </Text>
               </HStack>
