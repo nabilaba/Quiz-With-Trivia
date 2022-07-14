@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 export default function Homepage() {
-  const { setIsLoggedIn, setNama } = useGlobalState();
+  const { isLoggedIn, setIsLoggedIn, setNama } = useGlobalState();
   const navigate = useNavigate();
   const {
     isOpen: isLoginOpen,
@@ -84,7 +84,7 @@ export default function Homepage() {
           <Button
             textTransform="uppercase"
             w="fit-content"
-            onClick={onLoginOpen}
+            onClick={isLoggedIn ? () => navigate("/dashboard") : onLoginOpen}
             bg="accent.50"
             color={"white"}
             {...hoveractive}

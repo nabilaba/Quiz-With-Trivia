@@ -9,10 +9,19 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
-
+import { useEffect } from "react";
+import API from "../../../constant";
 export default function Home() {
-  const { nama } = useGlobalState();
-  const Kuis = ({ judul }) => {
+  const { nama, easy, medium, hard, setEasy, setMedium, setHard } =
+    useGlobalState();
+
+  useEffect(() => {
+    setEasy(`${API.BASE_URL}${API.EASY}`);
+    setMedium(`${API.BASE_URL}${API.MEDIUM}`);
+    setHard(`${API.BASE_URL}${API.HARD}`);
+  }, []);
+
+  const Kuis = ({ judul, category }) => {
     return (
       <Stack borderRadius="md" pr={2} borderColor="accent.50">
         <Text fontSize="xl" fontWeight="bold">
@@ -48,7 +57,7 @@ export default function Home() {
                     transform: "scale(1.1)",
                   }}
                 >
-                  General Knowledge
+                  {category}
                 </Heading>
               </Stack>
               <HStack
@@ -102,9 +111,9 @@ export default function Home() {
         <Text fontSize="3xl" fontWeight="bold">
           Hi, {nama || "Guest"}
         </Text>
-        <Kuis judul="😁 Versi Mudah" />
-        <Kuis judul="😲 Versi Sedang" />
-        <Kuis judul="😍 Versi Susah" />
+        <Kuis judul="😁 Versi Mudah" category="Easy" />
+        <Kuis judul="😲 Versi Sedang" category="Medium" />
+        <Kuis judul="😍 Versi Susah" category="Hard" />
       </Stack>
     </Container>
   );

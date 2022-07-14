@@ -5,6 +5,8 @@ import { Stack, Text, Image, Button } from "@chakra-ui/react";
 
 export default function Keluar() {
   const navigate = useNavigate();
+  const { setIsLoggedIn, setNama } = useGlobalState();
+
   return (
     <Stack
       borderRadius="md"
@@ -23,6 +25,8 @@ export default function Keluar() {
         _hover={{ bg: "accent.100" }}
         _active={{ bg: "accent.100" }}
         onClick={() => {
+          setIsLoggedIn(false);
+          setNama("");
           useGlobalState.persist.clearStorage();
           navigate("/");
         }}

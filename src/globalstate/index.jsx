@@ -8,6 +8,27 @@ const useGlobalState = create(
 
     nama: "",
     setNama: (nama) => set((state) => ({ ...state, nama })),
+
+    easy: [],
+    setEasy: async (api) => {
+      const response = await fetch(api);
+      const data = await response.json();
+      set((state) => ({ ...state, easy: data.results }));
+    },
+
+    medium: [],
+    setMedium: async (api) => {
+      const response = await fetch(api);
+      const data = await response.json();
+      set((state) => ({ ...state, medium: data.results }));
+    },
+
+    hard: [],
+    setHard: async (api) => {
+      const response = await fetch(api);
+      const data = await response.json();
+      set((state) => ({ ...state, hard: data.results }));
+    },
   }))
 );
 
