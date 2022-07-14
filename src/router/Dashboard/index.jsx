@@ -60,7 +60,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text as={LinkTo} to="/" fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+        <Text
+          as={LinkTo}
+          to="/"
+          fontSize="2xl"
+          fontFamily="monospace"
+          fontWeight="bold"
+        >
           QWT
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
@@ -139,14 +145,18 @@ const MobileNav = ({ onOpen, ...rest }) => {
       zIndex={1}
       {...rest}
     >
-      <IconButton
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
+      <IconButton onClick={onOpen} aria-label="open menu" icon={<FiMenu />} />
 
-      <Text as={LinkTo} to="/" fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold" color="white">
-        QWT
+      <Text
+        as={LinkTo}
+        to="/"
+        fontSize="2xl"
+        ml="8"
+        fontFamily="monospace"
+        fontWeight="bold"
+        color="white"
+      >
+        Quiz With Trivia
       </Text>
     </Flex>
   );
