@@ -21,6 +21,7 @@ import {
 import background from "../../assets/image/background.jpg";
 import loginImg from "../../assets/image/login.svg";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Homepage() {
   const { setIsLoggedIn, setNama } = useGlobalState();
@@ -62,6 +63,9 @@ export default function Homepage() {
       bgPos="center"
       bgSize="cover"
     >
+      <Helmet>
+        <title>Quiz With Trivia</title>
+      </Helmet>
       <Flex
         align="center"
         pos="relative"

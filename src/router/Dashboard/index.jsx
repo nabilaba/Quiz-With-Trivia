@@ -16,6 +16,7 @@ import {
 import { FiArrowLeft, FiHome, FiMenu } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { Outlet, Link as LinkTo, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, path: "/dashboard" },
@@ -34,6 +35,9 @@ export default function SimpleSidebar() {
   } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+      <Helmet>
+        <title>QWT - Keluar</title>
+      </Helmet>
       <SidebarContent
         onClose={() => onSidebarClose}
         display={{ base: "none", md: "block" }}

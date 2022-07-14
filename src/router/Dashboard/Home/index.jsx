@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const { nama } = useGlobalState();
@@ -94,6 +95,9 @@ export default function Home() {
 
   return (
     <Container maxW="full" p={4}>
+      <Helmet>
+        <title>QWT - Dashboard</title>
+      </Helmet>
       <Stack spacing={3}>
         <Text fontSize="3xl" fontWeight="bold">
           Hi, {nama || "Guest"}

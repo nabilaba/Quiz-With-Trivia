@@ -8,8 +8,7 @@ export default function Keluar() {
   return (
     <Stack
       borderRadius="md"
-      pr={2}
-      py={3}
+      py={5}
       borderColor="accent.50"
       align="center"
       justify="center"
