@@ -7,6 +7,9 @@ export default function No() {
   const { id } = useParams();
   const { dataKuis } = useGlobalState();
   const noKuis = parseInt(id) + 1;
+  const incorrect_answers = dataKuis[id].incorrect_answers;
+  const correct_answer = dataKuis[id].correct_answer;
+  const pilihan = [...incorrect_answers, correct_answer];
   return (
     <Stack borderRadius="md" py={5} borderColor="accent.50">
       <Helmet>
@@ -21,9 +24,17 @@ export default function No() {
         </Heading>
         <RadioGroup>
           <Stack>
-            <Radio value="1">Unchecked</Radio>
-            <Radio value="2">Unchecked</Radio>
-            <Radio value="3">Unchecked</Radio>
+            {pilihan.map((item, index) => (
+              <Radio
+                key={index}
+                value={item}
+                onChange={() => {
+                  console.log(item);
+                }}
+              >
+                {item}
+              </Radio>
+            ))}
           </Stack>
         </RadioGroup>
       </Stack>
