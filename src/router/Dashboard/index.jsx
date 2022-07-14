@@ -91,25 +91,30 @@ const NavItem = ({ icon, path, children, ...rest }) => {
         align="center"
         p="4"
         mx="4"
-        borderRadius="lg"
+        borderRadius="xl"
         role="group"
         cursor="pointer"
-        color={loc.pathname === path ? "white" : "black"}
+        color={loc.pathname === path ? "accent.50" : "black"}
+        bg={loc.pathname === path ? "blackAlpha.100" : "transparent"}
+        borderWidth={2}
+        borderColor={loc.pathname === path ? "accent.50" : "transparent"}
+        transition="all 0.3s"
         _hover={{
-          bg: "accent.100",
-          color: "white",
+          transform: "translateX(2px)",
+          bg: "blackAlpha.100",
+          color: "accent.50",
         }}
-        bg={loc.pathname === path ? "accent.50" : "transparent"}
         {...rest}
       >
         {icon && (
           <Icon
             mr="4"
             fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
             as={icon}
+            transform={loc.pathname === path ? "rotate(25deg)" : "none"}
+            _groupHover={{
+              transform: "rotate(25deg)",
+            }}
           />
         )}
         {children}
