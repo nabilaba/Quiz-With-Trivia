@@ -6,7 +6,6 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Button,
 } from "@chakra-ui/react";
 
 export default function Home() {

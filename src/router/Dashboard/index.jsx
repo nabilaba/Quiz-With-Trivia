@@ -130,20 +130,22 @@ const MobileNav = ({ onOpen, ...rest }) => {
       px={{ base: 4, md: 24 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue("white", "gray.900")}
+      bg="accent.50"
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue("gray.200", "gray.700")}
       justifyContent="flex-start"
+      position="sticky"
+      top={0}
+      zIndex={1}
       {...rest}
     >
       <IconButton
-        variant="outline"
         onClick={onOpen}
         aria-label="open menu"
         icon={<FiMenu />}
       />
 
-      <Text as={LinkTo} to="/" fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
+      <Text as={LinkTo} to="/" fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold" color="white">
         QWT
       </Text>
     </Flex>

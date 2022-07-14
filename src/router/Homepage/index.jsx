@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useGlobalState from "../../globalstate";
 import {
   Flex,
   Box,
@@ -22,6 +23,7 @@ import loginImg from "../../assets/image/login.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
+  const { setIsLoggedIn } = useGlobalState();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [username, setUsername] = useState("");
@@ -43,6 +45,7 @@ export default function Homepage() {
     else if (password !== "12345678") alert("Password salah");
     else {
       onClose();
+      setIsLoggedIn(true);
       navigate("/dashboard");
     }
   };
