@@ -1,3 +1,4 @@
+import useGlobalState from "../../globalstate";
 import {
   IconButton,
   Box,
@@ -14,33 +15,47 @@ import {
 } from "@chakra-ui/react";
 import { FiArrowLeft, FiHome, FiMenu } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
-import { Outlet, Link as LinkTo } from "react-router-dom";
+import { Outlet, Link as LinkTo, useNavigate } from "react-router-dom";
 
-const LinkItems = [{ name: "Dashboard", icon: FiHome, path: "/dashboard" }];
+const LinkItems = [
+  { name: "Dashboard", icon: FiHome, path: "/dashboard" },
+  {
+    name: "Keluar",
+    icon: FiArrowLeft,
+    path: "/dashboard/keluar",
+  },
+];
 
 export default function SimpleSidebar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isSidebarOpen,
+    onOpen: onSidebarOpen,
+    onClose: onSidebarClose,
+  } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
-        onClose={() => onClose}
+        onClose={() => onSidebarClose}
         display={{ base: "none", md: "block" }}
       />
       <Drawer
         autoFocus={false}
-        isOpen={isOpen}
+        isOpen={isSidebarOpen}
         placement="left"
-        onClose={onClose}
+        onClose={onSidebarClose}
         returnFocusOnClose={false}
-        onOverlayClick={onClose}
+        onOverlayClick={onSidebarClose}
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent onClose={onSidebarClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      <MobileNav
+        display={{ base: "flex", md: "none" }}
+        onOpen={onSidebarOpen}
+      />
       <Box ml={{ base: 0, md: 60 }} p={4}>
         <Outlet />
       </Box>
@@ -49,6 +64,7 @@ export default function SimpleSidebar() {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const navigate = useNavigate();
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -77,9 +93,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
             {link.name}
           </NavItem>
         ))}
-        <NavItem icon={FiArrowLeft} path={"/"}>
-          Keluar
-        </NavItem>
       </Stack>
     </Box>
   );
@@ -89,7 +102,8 @@ const NavItem = ({ icon, path, children, ...rest }) => {
   const loc = useLocation();
   return (
     <Link
-      href="#"
+      as={LinkTo}
+      to={path}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >

@@ -1,3 +1,4 @@
+import useGlobalState from "../../../globalstate";
 import {
   Box,
   Container,
@@ -9,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Home() {
+  const { nama } = useGlobalState();
   const Kuis = ({ judul }) => {
     return (
       <Stack borderRadius="md" pr={2} borderColor="accent.50">
@@ -91,10 +93,10 @@ export default function Home() {
   };
 
   return (
-    <Container maxW="full">
+    <Container maxW="full" p={4}>
       <Stack spacing={3}>
         <Text fontSize="3xl" fontWeight="bold">
-          Hi, Nabil 👋
+          Hi, {nama || "Guest"}
         </Text>
         <Kuis judul="😁 Versi Mudah" />
         <Kuis judul="😲 Versi Sedang" />

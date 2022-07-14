@@ -23,9 +23,13 @@ import loginImg from "../../assets/image/login.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
-  const { setIsLoggedIn } = useGlobalState();
+  const { setIsLoggedIn, setNama } = useGlobalState();
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isLoginOpen,
+    onOpen: onLoginOpen,
+    onClose: onLoginClose,
+  } = useDisclosure();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const hoveractive = {
@@ -44,7 +48,7 @@ export default function Homepage() {
     else if (password.length < 8) alert("Password minimal 8 karakter");
     else if (password !== "12345678") alert("Password salah");
     else {
-      onClose();
+      onLoginClose();
       setIsLoggedIn(true);
       navigate("/dashboard");
     }
@@ -76,7 +80,7 @@ export default function Homepage() {
           <Button
             textTransform="uppercase"
             w="fit-content"
-            onClick={onOpen}
+            onClick={onLoginOpen}
             bg="accent.50"
             color={"white"}
             {...hoveractive}
@@ -86,9 +90,9 @@ export default function Homepage() {
         </Stack>
       </Flex>
       <Modal
-        onClose={onClose}
+        onClose={onLoginClose}
         size={"full"}
-        isOpen={isOpen}
+        isOpen={isLoginOpen}
         scrollBehavior={"inside"}
         motionPreset="slideInBottom"
       >
@@ -142,10 +146,10 @@ export default function Homepage() {
                         placeholder="Nama"
                         bg={"gray.100"}
                         border={0}
-                        color={"gray.500"}
                         _placeholder={{
                           color: "gray.500",
                         }}
+                        onChange={(e) => setNama(e.target.value)}
                       />
                       <Input
                         type="text"
@@ -153,7 +157,6 @@ export default function Homepage() {
                         placeholder="Username: demo"
                         bg={"gray.100"}
                         border={0}
-                        color={"gray.500"}
                         _placeholder={{
                           color: "gray.500",
                         }}
@@ -162,10 +165,9 @@ export default function Homepage() {
                       <Input
                         type="password"
                         isRequired
-                        placeholder="Password : 123"
+                        placeholder="Password : 12345678"
                         bg={"gray.100"}
                         border={0}
-                        color={"gray.500"}
                         _placeholder={{
                           color: "gray.500",
                         }}

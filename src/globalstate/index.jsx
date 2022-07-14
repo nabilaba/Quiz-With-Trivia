@@ -5,6 +5,9 @@ const useGlobalState = create(
   persist((set) => ({
     isLoggedIn: false,
     setIsLoggedIn: (isLoggedIn) => set((state) => ({ ...state, isLoggedIn })),
+
+    nama: "",
+    setNama: (nama) => set((state) => ({ ...state, nama })),
   }))
 );
 
