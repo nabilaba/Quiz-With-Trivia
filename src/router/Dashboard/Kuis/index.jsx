@@ -14,6 +14,8 @@ export default function Kuis() {
     else if (namaKuis === "Science: Mathematics")
       setDataKuis(`${API.BASE_URL}${API.HARD}&category=19`);
   }, []);
+
+  console.log(dataKuis);
   return (
     <Container maxW="full" p={4}>
       <Helmet>

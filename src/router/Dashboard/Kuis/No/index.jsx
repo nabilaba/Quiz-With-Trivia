@@ -77,13 +77,10 @@ export default function No() {
           ) : (
             <Button
               as={LinkTo}
-              to="/dashboard/kuis"
+              to="/dashboard/kuis/hasil"
               colorScheme="blue"
               size="lg"
               w="full"
-              onClick={() => {
-                removeAllJawaban();
-              }}
             >
               Selesai
             </Button>

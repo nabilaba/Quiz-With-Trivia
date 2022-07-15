@@ -6,6 +6,7 @@ import Home from "./router/Dashboard/Home";
 import Keluar from "./router/Dashboard/Keluar";
 import Kuis from "./router/Dashboard/Kuis";
 import No from "./router/Dashboard/Kuis/No";
+import Hasil from "./router/Dashboard/Kuis/Hasil";
 function App() {
   const { isLoggedIn } = useGlobalState();
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="kuis" element={<Outlet />}>
             <Route index element={<Kuis />} />
             <Route path="mengerjakan" element={<No />} />
+            <Route path="hasil" element={<Hasil />} />
           </Route>
           <Route path="keluar" element={<Keluar />} />
         </Route>
