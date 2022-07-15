@@ -1,11 +1,10 @@
 import useGlobalState from "../../../globalstate";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import API from "../../../constant";
 import { Link as LinkTo } from "react-router-dom";
 import {
   Button,
   Container,
-  Heading,
   Text,
   Image,
   OrderedList,
@@ -17,7 +16,7 @@ import { Helmet } from "react-helmet";
 import contohkuis1 from "../../../assets/image/contohkuis1.png";
 import contohkuis2 from "../../../assets/image/contohkuis2.png";
 export default function Kuis() {
-  const { namaKuis, setDataKuis, setIdSoal, setTimer, setJawaban } =
+  const { namaKuis, setDataKuis, setIdSoal, setTimer, removeAllJawaban } =
     useGlobalState();
   useEffect(() => {
     if (namaKuis === "Vehicles")
@@ -71,7 +70,7 @@ export default function Kuis() {
           onClick={() => {
             setIdSoal(0);
             setTimer(300000);
-            setJawaban([]);
+            removeAllJawaban();
           }}
           my={4}
           w="full"

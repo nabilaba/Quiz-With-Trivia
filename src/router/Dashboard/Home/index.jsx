@@ -8,10 +8,77 @@ import {
   SimpleGrid,
   Stack,
   Text,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogBody,
+  AlertDialogFooter,
+  useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
+import { useRef, useState } from "react";
 export default function Home() {
   const { nama, setNamaKuis } = useGlobalState();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
+  const [judulDipilih, setJudulDipilih] = useState("");
+
+  function ResumeAlert() {
+    return (
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        size="lg"
+        motionPreset="slideInBottom"
+        isCentered
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Melanjutkan?
+            </AlertDialogHeader>
+            <AlertDialogBody>
+              Anda memiliki riwayat yang belum diselesaikan. Apakah anda ingin
+              melanjutkanya?
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <HStack>
+                <Button
+                  as={LinkTo}
+                  to="kuis"
+                  color="white"
+                  bg="blue.400"
+                  _hover={{ bg: "blue.500 " }}
+                  _active={{ bg: "blue.500" }}
+                  onClick={() => {
+                    onClose();
+                    setNamaKuis(judulDipilih);
+                  }}
+                >
+                  Tidak
+                </Button>
+                <Button
+                  as={LinkTo}
+                  to="kuis/mengerjakan"
+                  color="white"
+                  bg="accent.50"
+                  _hover={{ bg: "accent.100 " }}
+                  _active={{ bg: "accent.100" }}
+                  onClick={onClose}
+                >
+                  Ya
+                </Button>
+              </HStack>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    );
+  }
+
   const Kuis = ({ judul, category }) => {
     return (
       <Stack borderRadius="md" pr={2} borderColor="accent.50">
@@ -20,8 +87,6 @@ export default function Home() {
         </Text>
         <SimpleGrid columns={1} spacingX={2} spacingY={2}>
           <Box
-            as={LinkTo}
-            to={`kuis`}
             cursor="pointer"
             bg="blackAlpha.800"
             color={"white"}
@@ -29,7 +94,10 @@ export default function Home() {
             h="250px"
             justify="center"
             role={"group"}
-            onClick={() => setNamaKuis(category)}
+            onClick={() => {
+              setJudulDipilih(judul);
+              onOpen();
+            }}
           >
             <Stack
               spacing={2}
@@ -106,6 +174,7 @@ export default function Home() {
         <Kuis judul="😲 Versi Sedang" category="General Knowledge" />
         <Kuis judul="😍 Versi Susah" category="Science: Mathematics" />
       </Stack>
+      <ResumeAlert />
     </Container>
   );
 }
