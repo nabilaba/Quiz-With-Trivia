@@ -12,6 +12,7 @@ export default function Timer() {
         setTimer(timer - 1000);
       }}
       onComplete={() => {
+        setTimer(0);
         navigate("/dashboard/kuis/hasil");
       }}
       renderer={(props) => (

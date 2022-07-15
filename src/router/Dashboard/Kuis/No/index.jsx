@@ -33,12 +33,12 @@ export default function No() {
           Sisa Waktu: <Timer />
         </Text>
       </HStack>
-      <Stack spacing={2}>
+      <Stack spacing={4}>
         <Heading as="h2" size="md">
           {formatter(dataKuis[idSoal].question)}
         </Heading>
         <RadioGroup value={jawaban[idSoal]}>
-          <Stack>
+          <Stack spacing={4}>
             {pilihan.map((item, index) => (
               <Radio
                 key={index}
