@@ -13,10 +13,26 @@ export default function Hasil() {
     return score;
   }
 
+  function getSalah() {
+    let salah = 0;
+    dataKuis.forEach((soal, index) => {
+      if (soal.correct_answer !== jawaban[index]) salah++;
+    });
+    return salah;
+  }
+
   function getNilai() {
     const totalScore = getTotalScore();
     const nilai = totalScore / dataKuis.length;
     return nilai * 100;
+  }
+
+  function getStatus() {
+    const nilai = getNilai();
+    if (nilai >= 80) return "Sangat Baik";
+    if (nilai >= 60) return "Baik";
+    if (nilai >= 40) return "Cukup";
+    return "Kurang";
   }
 
   return (
@@ -27,9 +43,9 @@ export default function Hasil() {
       <Heading fontSize="3xl" fontWeight="bold">
         Hasil
       </Heading>
-
       <Text>Total benar anda adalah: {getTotalScore()}</Text>
-      <Text>Nilai anda adalah: {getNilai()}</Text>
+      <Text>Total salah anda adalah: {getSalah()}</Text>
+      <Text>Nilai anda adalah: {getNilai()} {`(${getStatus()})`}</Text>
     </Container>
   );
 }
