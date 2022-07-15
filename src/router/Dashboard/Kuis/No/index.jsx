@@ -6,6 +6,7 @@ import {
   Radio,
   RadioGroup,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 import { Link as LinkTo } from "react-router-dom";
@@ -24,10 +25,14 @@ export default function No() {
       <Helmet>
         <title>{`QWT - Kuis ${noKuis}`}</title>
       </Helmet>
-      <Heading as="h1" size="md" color="accent.50">
-        Kuis {noKuis}
-      </Heading>
-      <Timer />
+      <HStack justifyContent="space-between" alignItems="center">
+        <Heading as="h1" size="md" color="accent.50">
+          Kuis {noKuis}
+        </Heading>
+        <Text>
+          Sisa Waktu: <Timer />
+        </Text>
+      </HStack>
       <Stack spacing={2}>
         <Heading as="h2" size="md">
           {formatter(dataKuis[idSoal].question)}

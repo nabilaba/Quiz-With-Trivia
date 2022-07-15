@@ -15,9 +15,9 @@ export default function Timer() {
         navigate("/dashboard/kuis/hasil");
       }}
       renderer={(props) => (
-        <div>
-          {zeroPad(props.minutes)} : {zeroPad(props.seconds)}
-        </div>
+        <>
+          {zeroPad(props.minutes)}:{zeroPad(props.seconds)}
+        </>
       )}
     />
   );
