@@ -45,6 +45,9 @@ export default function No() {
                 value={item}
                 onChange={() => {
                   setJawaban(idSoal, item);
+                  if(noKuis < dataKuis.length) {
+                    setIdSoal(idSoal + 1);
+                  }
                 }}
               >
                 {formatter(item)}
@@ -75,7 +78,7 @@ export default function No() {
               size="lg"
               w="full"
               onClick={() => {
-                setIdSoal(noKuis);
+                setIdSoal(idSoal + 1);
               }}
             >
               Selanjutnya
