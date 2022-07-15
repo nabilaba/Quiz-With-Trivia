@@ -19,11 +19,13 @@ import {
 } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Home() {
-  const { nama, setNamaKuis } = useGlobalState();
+  const { nama, setNamaKuis, timer, setTimer } = useGlobalState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
   const [judulDipilih, setJudulDipilih] = useState("");
+  const navigate = useNavigate();
 
   function ResumeAlert() {
     return (
@@ -55,6 +57,7 @@ export default function Home() {
                   _active={{ bg: "blue.500" }}
                   onClick={() => {
                     onClose();
+                    setTimer(0);
                     setNamaKuis(judulDipilih);
                   }}
                 >
@@ -95,8 +98,13 @@ export default function Home() {
             justify="center"
             role={"group"}
             onClick={() => {
-              setJudulDipilih(judul);
-              onOpen();
+              if (timer > 0) {
+                onOpen();
+                setJudulDipilih(judul);
+              } else {
+                setNamaKuis(judul);
+                navigate("kuis");
+              }
             }}
           >
             <Stack

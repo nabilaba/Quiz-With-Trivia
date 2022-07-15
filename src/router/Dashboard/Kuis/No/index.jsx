@@ -13,7 +13,7 @@ import useGlobalState from "../../../../globalstate";
 import formatter from "../../../../formatter";
 import Timer from "./Timer";
 export default function No() {
-  const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban } =
+  const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban, setTimer } =
     useGlobalState();
   const noKuis = parseInt(idSoal) + 1;
   const incorrect_answers = dataKuis[idSoal].incorrect_answers;
@@ -82,6 +82,9 @@ export default function No() {
               colorScheme="blue"
               size="lg"
               w="full"
+              onClick={() => {
+                setTimer(0);
+              }}
             >
               Selesai
             </Button>
