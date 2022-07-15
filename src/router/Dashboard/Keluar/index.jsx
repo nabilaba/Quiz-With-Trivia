@@ -5,7 +5,7 @@ import { Stack, Text, Image, Button } from "@chakra-ui/react";
 
 export default function Keluar() {
   const navigate = useNavigate();
-  const { setIsLoggedIn, setNama } = useGlobalState();
+  const { setIsLoggedIn, setNama, setJawaban } = useGlobalState();
 
   return (
     <Stack

@@ -3,22 +3,40 @@ import { persist } from "zustand/middleware";
 import axios from "axios";
 
 const useGlobalState = create(
-  persist((set) => ({
-    isLoggedIn: false,
-    setIsLoggedIn: (isLoggedIn) => set((state) => ({ ...state, isLoggedIn })),
+  persist(
+    (set) => ({
+      isLoggedIn: false,
+      setIsLoggedIn: (isLoggedIn) => set((state) => ({ ...state, isLoggedIn })),
 
-    nama: "",
-    setNama: (nama) => set((state) => ({ ...state, nama })),
+      nama: "",
+      setNama: (nama) => set((state) => ({ ...state, nama })),
 
-    namaKuis: "",
-    setNamaKuis: (namaKuis) => set((state) => ({ ...state, namaKuis })),
+      namaKuis: "",
+      setNamaKuis: (namaKuis) => set((state) => ({ ...state, namaKuis })),
 
-    dataKuis: [],
-    setDataKuis: async (api) => {
-      const { data } = await axios.get(api);
-      set((state) => ({ ...state, dataKuis: data.results }));
-    },
-  }))
+      dataKuis: [],
+      setDataKuis: async (api) => {
+        const { data } = await axios.get(api);
+        set((state) => ({ ...state, dataKuis: data.results }));
+      },
+
+      idSoal: 1,
+      setIdSoal: (idSoal) => set((state) => ({ ...state, idSoal })),
+
+      jawaban: [],
+      setJawaban: (index, input) => {
+        set((state) => {
+          const newJawaban = [...state.jawaban];
+          newJawaban[index] = input;
+          return { ...state, jawaban: newJawaban };
+        });
+      },
+      removeAllJawaban: () => set(() => ({ jawaban: [] })),
+    }),
+    {
+      name: "globalstate",
+    }
+  )
 );
 
 export default useGlobalState;

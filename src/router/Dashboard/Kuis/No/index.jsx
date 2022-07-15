@@ -1,14 +1,22 @@
-import { Button, Heading, Radio, RadioGroup, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  HStack,
+  Radio,
+  RadioGroup,
+  Stack,
+} from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
-import { useParams, Link as LinkTo } from "react-router-dom";
+import { Link as LinkTo } from "react-router-dom";
 import useGlobalState from "../../../../globalstate";
 
 export default function No() {
-  const { id } = useParams();
-  const { dataKuis } = useGlobalState();
-  const noKuis = parseInt(id) + 1;
-  const incorrect_answers = dataKuis[id].incorrect_answers;
-  const correct_answer = dataKuis[id].correct_answer;
+  const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban, removeAllJawaban } =
+    useGlobalState();
+  const noKuis = parseInt(idSoal) + 1;
+  const incorrect_answers = dataKuis[idSoal].incorrect_answers;
+  const correct_answer = dataKuis[idSoal].correct_answer;
   const pilihan = [...incorrect_answers, correct_answer];
   return (
     <Stack borderRadius="md" py={5} borderColor="accent.50">
@@ -20,16 +28,18 @@ export default function No() {
       </Heading>
       <Stack spacing={2}>
         <Heading as="h2" size="md">
-          {dataKuis[id].question.replace(/&quot;/g, '"')}
+          {dataKuis[idSoal].question.replace(/&quot;/g, '"')}
         </Heading>
-        <RadioGroup>
+        {console.log(jawaban[idSoal])}
+        <RadioGroup value={jawaban[idSoal]}>
           <Stack>
             {pilihan.map((item, index) => (
               <Radio
                 key={index}
                 value={item}
                 onChange={() => {
-                  console.log(item);
+                  setJawaban(idSoal, item);
+                  setIdSoal(idSoal + 1);
                 }}
               >
                 {item}
@@ -38,27 +48,49 @@ export default function No() {
           </Stack>
         </RadioGroup>
       </Stack>
-      {noKuis < dataKuis.length ? (
-        <Button
-          as={LinkTo}
-          to={`/dashboard/kuis/no=${noKuis}`}
-          colorScheme="blue"
-          variant="outline"
-          size="lg"
-        >
-          Selanjutnya
-        </Button>
-      ) : (
-        <Button
-          as={LinkTo}
-          to="/dashboard/kuis"
-          colorScheme="blue"
-          variant="outline"
-          size="lg"
-        >
-          Selesai
-        </Button>
-      )}
+      <Box w="full" pos="fixed" bottom={0} left={0} pl={{ base: 0, md: 60 }}>
+        <HStack spacing={2} m={5}>
+          {idSoal !== 0 && (
+            <Button
+              colorScheme="black"
+              variant="outline"
+              size="lg"
+              w="full"
+              onClick={() => setIdSoal(idSoal - 1)}
+            >
+              Sebelumnya
+            </Button>
+          )}
+          {noKuis < dataKuis.length ? (
+            <Button
+              color="white"
+              bg="accent.50"
+              _hover={{ bg: "accent.100" }}
+              _active={{ bg: "accent.100" }}
+              size="lg"
+              w="full"
+              onClick={() => {
+                setIdSoal(noKuis);
+              }}
+            >
+              Selanjutnya
+            </Button>
+          ) : (
+            <Button
+              as={LinkTo}
+              to="/dashboard/kuis"
+              colorScheme="blue"
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                removeAllJawaban();
+              }}
+            >
+              Selesai
+            </Button>
+          )}
+        </HStack>
+      </Box>
     </Stack>
   );
 }

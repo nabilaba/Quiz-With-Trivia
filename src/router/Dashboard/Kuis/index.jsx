@@ -5,7 +5,7 @@ import { Link as LinkTo } from "react-router-dom";
 import { Button, Container, Heading } from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 export default function Kuis() {
-  const { namaKuis, setDataKuis } = useGlobalState();
+  const { namaKuis, setDataKuis, setIdSoal, dataKuis } = useGlobalState();
   useEffect(() => {
     if (namaKuis === "Vehicles")
       setDataKuis(`${API.BASE_URL}${API.EASY}&category=28`);
@@ -15,6 +15,8 @@ export default function Kuis() {
       setDataKuis(`${API.BASE_URL}${API.HARD}&category=19`);
   }, []);
 
+  console.log(dataKuis);
+  
   return (
     <Container maxW="full" p={4}>
       <Helmet>
@@ -25,10 +27,13 @@ export default function Kuis() {
       </Heading>
       <Button
         as={LinkTo}
-        to="no=0"
+        to="mengerjakan"
         colorScheme="blue"
         variant="outline"
         size="lg"
+        onClick={() => {
+          setIdSoal(1);
+        }}
       >
         Mulai
       </Button>

@@ -16,7 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="kuis" element={<Outlet />}>
             <Route index element={<Kuis />} />
-            <Route path="no=:id" element={<No />} />
+            <Route path="mengerjakan" element={<No />} />
           </Route>
           <Route path="keluar" element={<Keluar />} />
         </Route>
