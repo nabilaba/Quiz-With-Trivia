@@ -32,6 +32,9 @@ const useGlobalState = create(
         });
       },
       removeAllJawaban: () => set(() => ({ jawaban: [] })),
+
+      timer : 300000,
+      setTimer : (timer) => set((state) => ({ ...state, timer })),
     }),
     {
       name: "globalstate",

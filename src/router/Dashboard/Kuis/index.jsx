@@ -17,7 +17,8 @@ import { Helmet } from "react-helmet";
 import contohkuis1 from "../../../assets/image/contohkuis1.png";
 import contohkuis2 from "../../../assets/image/contohkuis2.png";
 export default function Kuis() {
-  const { namaKuis, setDataKuis, setIdSoal, dataKuis } = useGlobalState();
+  const { namaKuis, setDataKuis, setIdSoal, setTimer, setJawaban } =
+    useGlobalState();
   useEffect(() => {
     if (namaKuis === "Vehicles")
       setDataKuis(`${API.BASE_URL}${API.EASY}&category=28`);
@@ -26,8 +27,6 @@ export default function Kuis() {
     else if (namaKuis === "Science: Mathematics")
       setDataKuis(`${API.BASE_URL}${API.HARD}&category=19`);
   }, []);
-
-  console.log(dataKuis);
   return (
     <Container maxW="full">
       <Helmet>
@@ -71,6 +70,8 @@ export default function Kuis() {
           _active={{ bg: "accent.100" }}
           onClick={() => {
             setIdSoal(0);
+            setTimer(300000);
+            setJawaban([]);
           }}
           my={4}
           w="full"

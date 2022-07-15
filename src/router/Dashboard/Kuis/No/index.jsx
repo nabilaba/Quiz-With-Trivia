@@ -11,9 +11,9 @@ import { Helmet } from "react-helmet";
 import { Link as LinkTo } from "react-router-dom";
 import useGlobalState from "../../../../globalstate";
 import formatter from "../../../../formatter";
-
+import Timer from "./Timer";
 export default function No() {
-  const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban, removeAllJawaban } =
+  const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban } =
     useGlobalState();
   const noKuis = parseInt(idSoal) + 1;
   const incorrect_answers = dataKuis[idSoal].incorrect_answers;
@@ -27,6 +27,7 @@ export default function No() {
       <Heading as="h1" size="md" color="accent.50">
         Kuis {noKuis}
       </Heading>
+      <Timer />
       <Stack spacing={2}>
         <Heading as="h2" size="md">
           {formatter(dataKuis[idSoal].question)}
