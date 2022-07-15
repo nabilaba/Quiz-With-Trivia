@@ -32,7 +32,7 @@ export default function Kuis() {
         variant="outline"
         size="lg"
         onClick={() => {
-          setIdSoal(1);
+          setIdSoal(0);
         }}
       >
         Mulai
