@@ -71,16 +71,26 @@ export default function Homepage() {
         pos="relative"
         justify="center"
         boxSize="full"
-        bg="blackAlpha.700"
+        bg="blackAlpha.800"
       >
         <Stack textAlign="center" alignItems="center" spacing={6}>
-          <Heading
-            fontSize={["2xl", , "3xl"]}
-            fontWeight="semibold"
-            color="white"
-          >
-            Quiz With Trivia
-          </Heading>
+          <Box maxW="lg">
+            <Heading
+              fontSize={["2xl", , "3xl"]}
+              fontWeight="semibold"
+              color="white"
+            >
+              Quiz With Trivia
+            </Heading>
+            <Text
+              fontSize={["lg", , "xl"]}
+              color="gray.300"
+              fontFamily={"sans-serif"}
+            >
+              Website untuk mengerjakan quiz dengan menggunakan data yang
+              diambil dari API Trivia
+            </Text>
+          </Box>
           <Button
             textTransform="uppercase"
             w="fit-content"
@@ -92,6 +102,9 @@ export default function Homepage() {
             Masuk
           </Button>
         </Stack>
+        <Text position="absolute" bottom="2" left="0" right="0" fontSize="sm" textAlign="center" color="gray.500" fontFamily="sans-serif">
+          Copyright © 2022 QWT · Nabil Aba
+        </Text>
       </Flex>
       <Modal
         onClose={onLoginClose}
