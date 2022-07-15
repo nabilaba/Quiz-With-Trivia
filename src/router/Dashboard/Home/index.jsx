@@ -100,9 +100,9 @@ export default function Home() {
             onClick={() => {
               if (timer > 0) {
                 onOpen();
-                setJudulDipilih(judul);
+                setJudulDipilih(category);
               } else {
-                setNamaKuis(judul);
+                setNamaKuis(category);
                 navigate("kuis");
               }
             }}
