@@ -63,7 +63,7 @@ export default function Hasil() {
         {getHasil()}
       </Text>
       <Text fontSize="xl" fontWeight="bold">
-        Nilai: {getNilai()}%
+        Nilai: {getNilai()}
       </Text>
       <Text fontSize="xl" fontWeight="bold">
         Status: {getStatus()}

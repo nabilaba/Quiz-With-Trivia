@@ -9,5 +9,8 @@ export default function Formatter(s) {
     .replace(/&gt;/g, ">")
     .replace(/&nbsp;/g, " ")
     .replace(/&atilde;/g, "ã")
+    .replace(/&aring;/g, "å")
+    .replace(/&auml;/g, "ä")
+    .replace(/&ouml;/g, "ö")
   return newS;
 }

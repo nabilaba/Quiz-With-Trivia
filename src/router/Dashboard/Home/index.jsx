@@ -150,7 +150,7 @@ export default function Home() {
                   color="black"
                   px={2}
                 >
-                  English
+                  {jumlah} menit
                 </Text>
                 <Text
                   fontWeight="bold"
@@ -159,7 +159,7 @@ export default function Home() {
                   color="black"
                   px={2}
                 >
-                  Pilihan Ganda
+                  English
                 </Text>
               </HStack>
             </Stack>
@@ -184,11 +184,7 @@ export default function Home() {
           category="General Knowledge"
           jumlah={10}
         />
-        <Kuis
-          judul="😍 Versi Susah"
-          category="History"
-          jumlah={15}
-        />
+        <Kuis judul="😍 Versi Susah" category="History" jumlah={15} />
       </Stack>
       <ResumeAlert />
     </Container>
