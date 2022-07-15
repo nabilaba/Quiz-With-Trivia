@@ -22,6 +22,7 @@ import background from "../../assets/image/background.jpg";
 import loginImg from "../../assets/image/login.svg";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import lazy from "../../lazy";
 
 export default function Homepage() {
   const { isLoggedIn, setIsLoggedIn, setNama } = useGlobalState();
@@ -59,7 +60,7 @@ export default function Homepage() {
     <Box
       w="full"
       h="100vh"
-      backgroundImage={background}
+      backgroundImage={lazy(background)}
       bgPos="center"
       bgSize="cover"
     >
