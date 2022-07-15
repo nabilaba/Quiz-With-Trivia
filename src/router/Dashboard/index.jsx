@@ -92,7 +92,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
       <Stack spacing={2}>
         {LinkItems.map((link) => (
-          <NavItem key={link.name} icon={link.icon} path={link.path}>
+          <NavItem key={link.name} onClose={onClose} icon={link.icon} path={link.path}>
             {link.name}
           </NavItem>
         ))}
@@ -101,7 +101,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, path, children, ...rest }) => {
+const NavItem = ({ onClose, icon, path, children, ...rest }) => {
   const loc = useLocation();
   return (
     <Link
@@ -109,6 +109,7 @@ const NavItem = ({ icon, path, children, ...rest }) => {
       to={path}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
+      onClick={onClose}
     >
       <Flex
         align="center"
@@ -163,7 +164,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
       {...rest}
     >
       <IconButton onClick={onOpen} aria-label="open menu" icon={<FiMenu />} />
-
       <Text
         as={LinkTo}
         to="/"

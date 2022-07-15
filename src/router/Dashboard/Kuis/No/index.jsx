@@ -10,6 +10,7 @@ import {
 import { Helmet } from "react-helmet";
 import { Link as LinkTo } from "react-router-dom";
 import useGlobalState from "../../../../globalstate";
+import formatter from "../../../../formatter";
 
 export default function No() {
   const { idSoal, setIdSoal, dataKuis, setJawaban, jawaban, removeAllJawaban } =
@@ -28,9 +29,8 @@ export default function No() {
       </Heading>
       <Stack spacing={2}>
         <Heading as="h2" size="md">
-          {dataKuis[idSoal].question.replace(/&quot;/g, '"')}
+          {formatter(dataKuis[idSoal].question)}
         </Heading>
-        {console.log(jawaban[idSoal])}
         <RadioGroup value={jawaban[idSoal]}>
           <Stack>
             {pilihan.map((item, index) => (
@@ -42,7 +42,7 @@ export default function No() {
                   setIdSoal(idSoal + 1);
                 }}
               >
-                {item}
+                {formatter(item)}
               </Radio>
             ))}
           </Stack>
@@ -80,8 +80,8 @@ export default function No() {
               as={LinkTo}
               to="/dashboard/kuis"
               colorScheme="blue"
-              variant="outline"
               size="lg"
+              w="full"
               onClick={() => {
                 removeAllJawaban();
               }}
