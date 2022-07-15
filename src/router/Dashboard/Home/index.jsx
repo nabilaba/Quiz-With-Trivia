@@ -82,7 +82,7 @@ export default function Home() {
     );
   }
 
-  const Kuis = ({ judul, category }) => {
+  const Kuis = ({ judul, category, jumlah }) => {
     return (
       <Stack borderRadius="md" pr={2} borderColor="accent.50">
         <Text fontSize="xl" fontWeight="bold">
@@ -141,7 +141,7 @@ export default function Home() {
                   color="black"
                   px={2}
                 >
-                  5 Soal
+                  {jumlah} Soal
                 </Text>
                 <Text
                   fontWeight="bold"
@@ -178,9 +178,17 @@ export default function Home() {
         <Text fontSize="3xl" fontWeight="bold">
           Hi, {nama || "Guest"}
         </Text>
-        <Kuis judul="😁 Versi Mudah" category="Vehicles" />
-        <Kuis judul="😲 Versi Sedang" category="General Knowledge" />
-        <Kuis judul="😍 Versi Susah" category="Science: Mathematics" />
+        <Kuis judul="😁 Versi Mudah" category="Vehicles" jumlah={5} />
+        <Kuis
+          judul="😲 Versi Sedang"
+          category="General Knowledge"
+          jumlah={10}
+        />
+        <Kuis
+          judul="😍 Versi Susah"
+          category="History"
+          jumlah={15}
+        />
       </Stack>
       <ResumeAlert />
     </Container>

@@ -23,8 +23,8 @@ export default function Kuis() {
       setDataKuis(`${API.BASE_URL}${API.EASY}&category=28`);
     else if (namaKuis === "General Knowledge")
       setDataKuis(`${API.BASE_URL}${API.MEDIUM}&category=9`);
-    else if (namaKuis === "Science: Mathematics")
-      setDataKuis(`${API.BASE_URL}${API.HARD}&category=19`);
+    else if (namaKuis === "History")
+      setDataKuis(`${API.BASE_URL}${API.HARD}&category=23`);
   }, []);
   return (
     <Container maxW="full">
@@ -69,8 +69,10 @@ export default function Kuis() {
           _active={{ bg: "accent.100" }}
           onClick={() => {
             setIdSoal(0);
-            setTimer(300000);
             removeAllJawaban();
+            if (namaKuis === "Vehicles") setTimer(300000);
+            else if (namaKuis === "General Knowledge") setTimer(600000);
+            else if (namaKuis === "History") setTimer(1200000);
           }}
           my={4}
           w="full"

@@ -7,6 +7,7 @@ export default function Formatter(s) {
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
-    .replace(/&nbsp;/g, " ");
+    .replace(/&nbsp;/g, " ")
+    .replace(/&atilde;/g, "ã")
   return newS;
 }

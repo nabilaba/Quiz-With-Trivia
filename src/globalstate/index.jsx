@@ -35,6 +35,9 @@ const useGlobalState = create(
 
       timer : 0,
       setTimer : (timer) => set((state) => ({ ...state, timer })),
+
+      riwayatNilai : [],
+      setRiwayatNilai : (riwayatNilai) => set((state) => ({ ...state, riwayatNilai })),
     }),
     {
       name: "globalstate",
