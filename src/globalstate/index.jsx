@@ -20,7 +20,7 @@ const useGlobalState = create(
         set((state) => ({ ...state, dataKuis: data.results }));
       },
 
-      idSoal: 1,
+      idSoal: 0,
       setIdSoal: (idSoal) => set((state) => ({ ...state, idSoal })),
 
       jawaban: [],
