@@ -25,7 +25,7 @@ export default function No() {
         <title>{`QWT - Kuis ${noKuis}`}</title>
       </Helmet>
       <Heading as="h1" size="md" color="accent.50">
-        Soal {noKuis}
+        Kuis {noKuis}
       </Heading>
       <Stack spacing={2}>
         <Heading as="h2" size="md">
@@ -39,7 +39,6 @@ export default function No() {
                 value={item}
                 onChange={() => {
                   setJawaban(idSoal, item);
-                  setIdSoal(idSoal + 1);
                 }}
               >
                 {formatter(item)}

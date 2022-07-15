@@ -25,9 +25,10 @@ export default function Kuis() {
       <Button
         as={LinkTo}
         to="mengerjakan"
-        colorScheme="blue"
-        variant="outline"
-        size="lg"
+        color="white"
+        bg="accent.50"
+        _hover={{ bg: "accent.100" }}
+        _active={{ bg: "accent.100" }}
         onClick={() => {
           setIdSoal(0);
         }}
