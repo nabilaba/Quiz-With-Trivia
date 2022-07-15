@@ -94,7 +94,7 @@ export default function Home() {
   };
 
   return (
-    <Container maxW="full" p={4}>
+    <Container maxW="full">
       <Helmet>
         <title>QWT - Dashboard</title>
       </Helmet>
